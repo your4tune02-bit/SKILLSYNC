@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.Cursor?>
+
+<StackPane minHeight="650.0" minWidth="950.0" prefHeight="750.0" prefWidth="1100.0" stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml" fx:controller="com.skill.sync2.skillsync2.HelloController">
+
+    <BorderPane fx:id="mainDashboard" visible="false">
+        <top>
+            <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="15">
+                <Button text="☰" onAction="#toggleSidebar" styleClass="hamburger-btn"   />
+                <ImageView fitHeight="45" preserveRatio="true">
+                    <image>
+                        <Image url="@logo.png"/>
+                    </image>
+                </ImageView>
+                <Pane HBox.hgrow="ALWAYS"/>
+
+                <MenuButton fx:id="notificationBell" styleClass="nav-btn" style="-fx-padding: 5 15; -fx-background-color: transparent;"   >
+                    <graphic>
+                        <StackPane alignment="TOP_RIGHT">
+                            <FontIcon iconLiteral="fas-bell" iconSize="18" iconColor="#94a3b8"/>
+                            <Circle fx:id="notificationBadge" radius="5" style="-fx-fill: #ef4444; -fx-stroke: #1e293b; -fx-stroke-width: 1;"
+                                    visible="false" managed="false" translateX="5" translateY="-5"/>
+                        </StackPane>
+                    </graphic>
+                </MenuButton>
+
+                <MenuButton fx:id="settingsBtn" styleClass="nav-btn" style="-fx-padding: 5 15; -fx-background-color: transparent;">
+                    <graphic>
+                        <FontIcon fx:id="settingsIcon" iconLiteral="fas-cog" iconSize="18" iconColor="#94a3b8"/>
+                    </graphic>
+                    <items>
+                        <CustomMenuItem hideOnClick="false">
+                            <content><Label text=" Appearance" styleClass="menu-header-label"/></content>
+                        </CustomMenuItem>
+
+                        <CheckMenuItem fx:id="themeToggleItem" text="Dark Mode" onAction="#toggleTheme" selected="true" />
+
+                        <Menu text="Visual Effects">
+                            <MenuItem text="🌸 Sakura Falling" onAction="#setEffectSakura"/>
+                            <MenuItem text="❄️ Snowflakes" onAction="#setEffectSnow"/>
+                            <MenuItem text="🍂 Autumn Leaves" onAction="#setEffectLeaves"/>
+                            <MenuItem text="🚫 Turn Off" onAction="#setEffectOff"/>
+                        </Menu>
+
+                        <SeparatorMenuItem />
+
+                        <CustomMenuItem hideOnClick="false">
+                            <content><Label text=" Account Management" styleClass="menu-header-label"/></content>
+                        </CustomMenuItem>
+
+                        <MenuItem text="Ghost Mode (Privacy)" onAction="#showGhostModeSettings"/>
+                        <MenuItem text="Ping Preferences" onAction="#showPingPreferences"/>
+                        <SeparatorMenuItem />
+                        <MenuItem text="Delete Account (Permanent)" onAction="#onDeleteAccountClick" style="-fx-text-fill: #ef4444;" />
+                    </items>
+                </MenuButton>
+
+                <Label fx:id="loggedInUserLabel" styleClass="top-user-lbl" text="User: None">
+                    <graphic>
+                        <StackPane alignment="BOTTOM_RIGHT">
+                            <FontIcon iconLiteral="fas-user-circle" iconSize="18" iconColor="#94a3b8"/>
+                            <Circle radius="4" style="-fx-fill: #10b981; -fx-effect: dropshadow(gaussian, rgba(16, 185, 129, 0.8), 6, 0.5, 0, 0);" translateX="2" translateY="2"/>
+                        </StackPane>
+                    </graphic>
+                </Label>
+            </HBox>
+        </top>
+
+        <left>
+            <StackPane fx:id="sidebarContainer" prefWidth="220" minWidth="0" styleClass="sidebar-container" alignment="TOP_LEFT">
+                <VBox fx:id="sidebar" prefWidth="220" minWidth="220" styleClass="sidebar">
+                    <Button fx:id="btnNavHome" text="Dashboard" maxWidth="Infinity" onAction="#navToHome" styleClass="nav-btn-active" >
+                        <graphic><FontIcon iconLiteral="fas-home" iconSize="16" iconColor="#94a3b8"/></graphic>
+                    </Button>
+                    <Button fx:id="btnNavProj" text="Find a Squad" maxWidth="Infinity" onAction="#navToProjects" styleClass="nav-btn"   >
+                        <graphic><FontIcon iconLiteral="fas-rocket" iconSize="16" iconColor="#94a3b8"/></graphic>
+                    </Button>
+                    <Button fx:id="btnNavSearch" text="Scout Talent" maxWidth="Infinity" onAction="#navToSearch" styleClass="nav-btn"   >
+                        <graphic><FontIcon iconLiteral="fas-search" iconSize="16" iconColor="#94a3b8"/></graphic>
+                    </Button>
+                    <Button fx:id="btnNavInbox" text="Pings &amp; Invites" maxWidth="Infinity" onAction="#navToInbox" styleClass="nav-btn"   >
+                        <graphic><FontIcon iconLiteral="fas-inbox" iconSize="16" iconColor="#94a3b8"/></graphic>
+                    </Button>
+                    <Button fx:id="btnNavChat" text="Squad Chat" maxWidth="Infinity" onAction="#navToChat" styleClass="nav-btn"   >
+                        <graphic><FontIcon iconLiteral="fas-comment-dots" iconSize="16" iconColor="#94a3b8"/></graphic>
+                    </Button>
+                    <Button fx:id="btnNavWorkspace" text="Task Board" maxWidth="Infinity" onAction="#navToWorkspace" styleClass="nav-btn"   >
+                        <graphic><FontIcon iconLiteral="fas-clipboard-list" iconSize="16" iconColor="#94a3b8"/></graphic>
+                    </Button>
+                    <Button fx:id="btnNavProfile" text="My Profile" maxWidth="Infinity" onAction="#navToProfile" styleClass="nav-btn"   >
+                        <graphic><FontIcon iconLiteral="fas-user-circle" iconSize="16" iconColor="#94a3b8"/></graphic>
+                    </Button>
+                    <Pane VBox.vgrow="ALWAYS" />
+                    <Button text="Log Out" maxWidth="Infinity" onAction="#onLogoutClick" styleClass="nav-btn" style="-fx-text-fill: #ef4444; -fx-padding: 15 20 20 20;"   >
+                        <graphic><FontIcon iconLiteral="fas-sign-out-alt" iconSize="16" iconColor="#ef4444"/></graphic>
+                    </Button>
+                </VBox>
+            </StackPane>
+        </left>
+
+        <center>
+            <StackPane fx:id="contentArea" alignment="TOP_LEFT">
+                <VBox fx:id="homeView" spacing="20" styleClass="view-pane">
+                    <VBox styleClass="hero-banner" spacing="5">
+                        <Label fx:id="homeWelcomeLbl" text="Welcome Back! 🚀" styleClass="hero-title"/>
+                        <Label text="Ready to link up and knock out some projects?" styleClass="hero-subtitle"/>
+                    </VBox>
+                    <Label text="Quick Stats" styleClass="header-label" style="-fx-padding: 10 0 0 0;"/>
+                    <HBox spacing="15">
+                        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                            <Label fx:id="statProjectsLbl" text="0" styleClass="stat-number"/>
+                            <Label text="Ongoing Quests" styleClass="sub-label"/>
+                        </VBox>
+                        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                            <Label fx:id="statInvitesLbl" text="0" styleClass="stat-number"/>
+                            <Label text="Pending Invites" styleClass="sub-label"/>
+                        </VBox>
+                        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                            <Label fx:id="statMessagesLbl" text="0" styleClass="stat-number"/>
+                            <Label text="Unread Pings" styleClass="sub-label"/>
+                        </VBox>
+                    </HBox>
+                    <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 10 0 0 0;">
+                        <Button text="Find Teammates" onAction="#navToSearch" styleClass="action-btn"   >
+                            <graphic><FontIcon iconLiteral="fas-search" iconSize="12" iconColor="white"/></graphic>
+                        </Button>
+                        <Button text="Start a Squad" onAction="#showCreateProjectForm" styleClass="action-btn" style="-fx-background-color: #8A2BE2;"  >
+                            <graphic><FontIcon iconLiteral="fas-plus" iconSize="12" iconColor="white"/></graphic>
+                        </Button>
+                    </HBox>
+                    <VBox spacing="10" style="-fx-padding: 15 0 0 0;">
+                        <Separator style="-fx-padding: 0 0 5 0;"/>
+                        <Label text="People You Should Know" styleClass="header-label" style="-fx-font-size: 18px;"/>
+                        <HBox fx:id="recommendationsBox" spacing="15" alignment="CENTER_LEFT"/>
+                    </VBox>
+                </VBox>
+
+                <VBox fx:id="projectView" spacing="15" styleClass="view-pane" visible="false">
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="Teams Looking for People" styleClass="header-label"/>
+                        <Pane HBox.hgrow="ALWAYS"/>
+                        <Button text="Start Your Own Squad" onAction="#showCreateProjectForm" styleClass="action-btn"   >
+                            <graphic><FontIcon iconLiteral="fas-plus" iconSize="12" iconColor="white"/></graphic>
+                        </Button>
+                    </HBox>
+                    <Separator/>
+                    <ListView fx:id="projectListView" VBox.vgrow="ALWAYS" styleClass="list-view"/>
+                </VBox>
+
+                <VBox fx:id="createProjectView" spacing="15" styleClass="view-pane" visible="false">
+                    <HBox alignment="CENTER_LEFT" spacing="15">
+                        <Button text="Back" onAction="#navToProjects" styleClass="action-btn" style="-fx-background-color: #6C6687;"   >
+                            <graphic><FontIcon iconLiteral="fas-arrow-left" iconSize="12" iconColor="white"/></graphic>
+                        </Button>
+                        <Label text="Create a Squad Request" styleClass="header-label"/>
+                    </HBox>
+                    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" VBox.vgrow="ALWAYS">
+                        <VBox spacing="15">
+                            <HBox spacing="10">
+                                <TextField fx:id="projectTitleInput" promptText="Project / Idea Name" styleClass="text-field" HBox.hgrow="ALWAYS"/>
+                                <DatePicker fx:id="projectDueDateInput" promptText="Deadline (Optional)" styleClass="text-field" prefWidth="180.0" minWidth="150.0"/>
+                            </HBox>
+                            <Label text="What are you trying to build?" styleClass="sub-label"/>
+                            <TextArea fx:id="projectGoalInput" promptText="Describe the project goals and expected outcomes." styleClass="custom-text-area" wrapText="true" prefHeight="80"/>
+                            <Label text="Who do you need?" styleClass="sub-label"/>
+                            <FlowPane fx:id="projectRolePane" hgap="8" vgap="8"/>
+                            <Label text="What will they be doing?" styleClass="sub-label"/>
+                            <TextArea fx:id="projectResponsibilitiesInput" promptText="Please list specific, actionable tasks." styleClass="custom-text-area" wrapText="true" prefHeight="80"/>
+                            <Button text="Post It!" onAction="#onPostProjectClick" prefWidth="200.0" styleClass="action-btn" style="-fx-background-color: #00E5FF; -fx-text-fill: #110F18;"   />
+                        </VBox>
+                    </ScrollPane>
+                </VBox>
+
+                <VBox fx:id="searchView" spacing="15" styleClass="view-pane" visible="false">
+                    <HBox alignment="CENTER_LEFT" spacing="15">
+                        <Label text="Scout for Talent" styleClass="header-label"/>
+                        <Pane HBox.hgrow="ALWAYS"/>
+                        <TextField fx:id="searchNameInput" promptText="Search usernames..." styleClass="text-field" prefWidth="250.0" onKeyReleased="#executeSearch"/>
+                        <Button text="Reset Vibes" onAction="#onClearSearchFilters" styleClass="action-btn" style="-fx-background-color: #6C6687;"   />
+                        <Button text="Surprise Me!" onAction="#onSurpriseMeClick" styleClass="action-btn" style="-fx-background-color: #FF2A85;"   >
+                            <graphic><FontIcon iconLiteral="fas-dice" iconSize="12" iconColor="white"/></graphic>
+                            <tooltip><Tooltip text="Find a random partner with your selected skill filter!"/></tooltip>
+                        </Button>
+                    </HBox>
+                    <VBox spacing="8" styleClass="card" style="-fx-border-width: 0; -fx-background-color: transparent; -fx-padding: 0;">
+                        <Label text="Looking for someone who knows:" styleClass="sub-label"/>
+                        <FlowPane fx:id="searchSkillPane" hgap="8" vgap="8"/>
+                    </VBox>
+                    <ListView fx:id="resultsList" VBox.vgrow="ALWAYS" styleClass="list-view"/>
+                </VBox>
+
+                <VBox fx:id="inboxView" spacing="15" styleClass="view-pane" visible="false">
+                    <HBox alignment="CENTER_LEFT" spacing="15">
+                        <Label text="Pings &amp; Invites" styleClass="header-label"/>
+                        <Button text="Refresh" onAction="#refreshInbox" styleClass="action-btn" style="-fx-background-color: #8A2BE2;"   />
+                    </HBox>
+                    <Separator/>
+                    <VBox spacing="15" VBox.vgrow="ALWAYS">
+                        <VBox spacing="8" VBox.vgrow="ALWAYS">
+                            <Label text="Squad Invites (You've been requested!)" styleClass="sub-label" style="-fx-text-fill: #FF2A85;"/>
+                            <ListView fx:id="teamInvitesListView" VBox.vgrow="ALWAYS" styleClass="list-view"/>
+                        </VBox>
+                        <VBox spacing="8" VBox.vgrow="ALWAYS">
+                            <Label text="People Wanting to Join You" styleClass="sub-label" style="-fx-text-fill: #00E5FF;"/>
+                            <ListView fx:id="projectAppsListView" VBox.vgrow="ALWAYS" styleClass="list-view"/>
+                        </VBox>
+                    </VBox>
+                </VBox>
+
+                <HBox fx:id="chatView" spacing="15" styleClass="view-pane" visible="false">
+                    <VBox prefWidth="220.0" minWidth="180.0" spacing="10" HBox.hgrow="NEVER">
+                        <Label text="Contacts" styleClass="header-label"/>
+                        <ListView fx:id="chatContactsList" VBox.vgrow="ALWAYS" styleClass="list-view"/>
+                    </VBox>
+                    <Separator orientation="VERTICAL"/>
+                    <VBox spacing="10" HBox.hgrow="ALWAYS">
+                        <Label fx:id="chatHeaderLabel" text="Select a chat to start typing" styleClass="header-label"/>
+                        <ListView fx:id="chatListView" VBox.vgrow="ALWAYS" styleClass="chat-box"/>
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Button onAction="#onSendChatAttachment" styleClass="action-btn" style="-fx-background-color: #6C6687; -fx-padding: 8 12;"   >
+                                <graphic><FontIcon iconLiteral="fas-paperclip" iconSize="14" iconColor="white"/></graphic>
+                            </Button>
+                            <TextField fx:id="chatMessageInput" promptText="Type something..." HBox.hgrow="ALWAYS" styleClass="text-field" onAction="#onSendChatMessage"/>
+                            <Button text="Send" onAction="#onSendChatMessage" styleClass="action-btn" style="-fx-background-color: #8A2BE2;"   >
+                                <graphic><FontIcon iconLiteral="fas-paper-plane" iconSize="12" iconColor="white"/></graphic>
+                            </Button>
+                        </HBox>
+                    </VBox>
+                </HBox>
+
+                <VBox fx:id="workspaceView" spacing="15" styleClass="view-pane" visible="false">
+                    <HBox alignment="CENTER_LEFT" spacing="15">
+                        <VBox spacing="5" HBox.hgrow="ALWAYS">
+                            <Label text="Squad Board" styleClass="header-label"/>
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <ProgressBar fx:id="workspacePulseBar" progress="0.0" prefWidth="300" styleClass="progress-bar" />
+                                <Label fx:id="pulseLabel" text="0% Completed" styleClass="sub-label" style="-fx-text-fill: #00E5FF;" />
+                            </HBox>
+                        </VBox>
+                        <ComboBox fx:id="workspaceTeamSelector" onAction="#onWorkspaceTeamChanged" prefWidth="250" styleClass="custom-combo" promptText="Select your Squad"/>
+                    </HBox>
+                    <HBox spacing="10">
+                        <TextField fx:id="workspaceNewTaskInput" promptText="What needs to get done?" HBox.hgrow="ALWAYS" styleClass="text-field" onAction="#onAddTask"/>
+                        <DatePicker fx:id="workspaceTaskDeadline" promptText="Deadline" styleClass="text-field" prefWidth="130.0"/>
+                        <Button text="Add Task" onAction="#onAddTask" styleClass="action-btn" style="-fx-background-color: #00E5FF; -fx-text-fill: #110F18;" >
+                            <graphic><FontIcon iconLiteral="fas-plus" iconSize="12" iconColor="#110F18"/></graphic>
+                        </Button>
+                        <Button text="Export Board" onAction="#onExportTasks" styleClass="action-btn" style="-fx-background-color: #8A2BE2;" >
+                            <graphic><FontIcon iconLiteral="fas-file-export" iconSize="12" iconColor="white"/></graphic>
+                        </Button>
+                    </HBox>
+                    <Separator/>
+                    <HBox spacing="15" VBox.vgrow="ALWAYS">
+                        <VBox spacing="10" HBox.hgrow="ALWAYS" styleClass="kanban-pending">
+                            <Label text="📌 To-Do List" styleClass="sub-label" style="-fx-text-fill: #A39DBE; -fx-font-weight: bold;"/>
+                            <ListView fx:id="pendingTaskList" VBox.vgrow="ALWAYS" styleClass="list-view" style="-fx-background-color: transparent; -fx-border-width: 0;"/>
+                        </VBox>
+                        <VBox spacing="10" HBox.hgrow="ALWAYS" styleClass="kanban-progress">
+                            <Label text="🚀 Being Worked On" styleClass="sub-label" style="-fx-text-fill: #FF2A85; -fx-font-weight: bold;"/>
+                            <ListView fx:id="progressTaskList" VBox.vgrow="ALWAYS" styleClass="list-view" style="-fx-background-color: transparent; -fx-border-width: 0;"/>
+                        </VBox>
+                        <VBox spacing="10" HBox.hgrow="ALWAYS" styleClass="kanban-done">
+                            <Label text="✅ Knocked Out" styleClass="sub-label" style="-fx-text-fill: #00E5FF; -fx-font-weight: bold;"/>
+                            <ListView fx:id="doneTaskList" VBox.vgrow="ALWAYS" styleClass="list-view" style="-fx-background-color: transparent; -fx-border-width: 0;"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+
+                <VBox fx:id="profileView" spacing="15" styleClass="view-pane" visible="false">
+                    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" VBox.vgrow="ALWAYS">
+                        <VBox spacing="15">
+                            <Label text="My Profile &amp; Skills" styleClass="header-label"/>
+                            <Label text="What are you good at?" styleClass="sub-label"/>
+                            <FlowPane fx:id="profileSkillsPane" hgap="8" vgap="8"/>
+                            <Label text="Your Bio:" styleClass="sub-label"/>
+                            <TextArea fx:id="profileBioInput" promptText="Tell others about yourself..." styleClass="custom-text-area" wrapText="true" prefHeight="100"/>
+                            <Button text="Save Profile" onAction="#onUpdateProfileClick" prefWidth="200.0" styleClass="action-btn"   />
+                            <Separator style="-fx-padding: 10 0;"/>
+                            <HBox alignment="CENTER_LEFT" spacing="15">
+                                <Label text="My Work Vault" styleClass="header-label"/>
+                                <Button text="Upload File" onAction="#onUploadPortfolioClick" styleClass="action-btn" style="-fx-background-color: #FF2A85;"   >
+                                    <graphic><FontIcon iconLiteral="fas-paperclip" iconSize="12" iconColor="white"/></graphic>
+                                </Button>
+                            </HBox>
+                            <Label text="Upload code snippets, designs, or docs to show off." styleClass="sub-label"/>
+                            <ListView fx:id="myPortfolioListView" prefHeight="250" styleClass="list-view"/>
+                            <Separator style="-fx-padding: 10 0;"/>
+                            <Label text="Nuclear Option" styleClass="header-label" style="-fx-text-fill: #ef4444;"/>
+                            <Label text="Wipe everything and leave SkillSync." styleClass="sub-label"/>
+                            <Button text="Delete Account" onAction="#onDeleteAccountClick" styleClass="action-btn" style="-fx-background-color: transparent; -fx-border-color: #ef4444; -fx-text-fill: #ef4444; -fx-border-radius: 8px;" />
+                        </VBox>
+                    </ScrollPane>
+                </VBox>
+
+                <VBox fx:id="publicProfileView" spacing="15" styleClass="view-pane" visible="false">
+                    <Button text="Back" onAction="#onBackFromProfile" styleClass="action-btn" style="-fx-background-color: #6C6687;"   >
+                        <graphic><FontIcon iconLiteral="fas-arrow-left" iconSize="12" iconColor="white"/></graphic>
+                    </Button>
+                    <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-padding: 15 0;">
+                        <StackPane fx:id="publicProfileAvatarPane"/>
+                        <VBox spacing="5">
+                            <Label fx:id="publicProfileNameLbl" styleClass="header-label" style="-fx-font-size: 28px;"/>
+                            <Label fx:id="publicProfileLastSeenLbl" styleClass="sub-label" style="-fx-font-style: italic; -fx-text-fill: #6C6687;"/>
+                            <Label fx:id="publicProfileSkillsLbl" styleClass="sub-label" style="-fx-text-fill: #00E5FF;"/>
+                        </VBox>
+                    </HBox>
+                    <Label text="About Me:" styleClass="sub-label"/>
+                    <Label fx:id="publicProfileBioLbl" wrapText="true" styleClass="custom-text-area" maxWidth="Infinity" minHeight="-Infinity"/>
+                    <HBox spacing="10" fx:id="publicProfileActionBox"/>
+                    <Separator style="-fx-padding: 10 0;"/>
+                    <Label text="Portfolio Vault" styleClass="header-label"/>
+                    <ListView fx:id="publicPortfolioListView" VBox.vgrow="ALWAYS" styleClass="list-view"/>
+                </VBox>
+            </StackPane>
+        </center>
+    </BorderPane>
+
+    <StackPane fx:id="authOverlay" styleClass="auth-overlay">
+        <VBox fx:id="loginCard" alignment="CENTER" spacing="20" maxWidth="380" maxHeight="380" styleClass="auth-card">
+            <Label text="Welcome Back 👋" styleClass="header-label"/>
+            <TextField fx:id="loginNameInput" promptText="Email Address" styleClass="text-field" maxWidth="Infinity" onAction="#onLoginSubmit"/>
+            <StackPane alignment="CENTER_RIGHT" maxWidth="Infinity">
+                <PasswordField fx:id="loginPasswordInput" promptText="Password" styleClass="text-field" maxWidth="Infinity"/>
+                <TextField fx:id="loginPasswordVisible" promptText="Password" styleClass="text-field" maxWidth="Infinity" visible="false" managed="false"/>
+                <Button text="👁" style="-fx-background-color: transparent; -fx-text-fill: #6C6687; -fx-font-size: 16px; -fx-padding: 0 10 0 0;" onAction="#toggleLoginPassword"   />
+            </StackPane>
+            <Button text="Log In" onAction="#onLoginSubmit" maxWidth="Infinity" styleClass="action-btn"   />
+            <Button text="Forgot Password?" onAction="#switchToForgotPassword" styleClass="link-btn" style="-fx-padding: 0;"   />
+            <Button text="New here? Create an Account" onAction="#switchToSignup" styleClass="link-btn"   />
+        </VBox>
+
+        <VBox fx:id="signupCard" alignment="CENTER" spacing="15" maxWidth="500" maxHeight="520" styleClass="auth-card" visible="false">
+            <Label text="Join the Squad" styleClass="header-label"/>
+            <TextField fx:id="signupEmailInput" promptText="Email Address (For Cloud Auth)" styleClass="text-field" maxWidth="Infinity" onAction="#onSignupSubmit"/>
+            <HBox spacing="10">
+                <TextField fx:id="signupNameInput" promptText="Choose a Username" styleClass="text-field" HBox.hgrow="ALWAYS" onAction="#onSignupSubmit"/>
+                <StackPane alignment="CENTER_RIGHT" maxWidth="Infinity">
+                    <PasswordField fx:id="signupPasswordInput" promptText="Create Password" styleClass="text-field" maxWidth="Infinity"/>
+                    <TextField fx:id="signupPasswordVisible" promptText="Create Password" styleClass="text-field" maxWidth="Infinity" visible="false" managed="false"/>
+                    <Button text="👁" style="-fx-background-color: transparent; -fx-text-fill: #6C6687; -fx-font-size: 16px; -fx-padding: 0 10 0 0;" onAction="#toggleSignupPassword"   />
+                </StackPane>
+            </HBox>
+            <Label text="What are you good at?" styleClass="sub-label"/>
+            <FlowPane fx:id="signupSkillsPane" hgap="8" vgap="8" alignment="CENTER"/>
+            <Button text="Sign Up &amp; Log In" onAction="#onSignupSubmit" maxWidth="Infinity" styleClass="action-btn"   />
+            <Button text="Already have an account? Log In" onAction="#switchToLogin" styleClass="link-btn"   />
+        </VBox>
+
+        <VBox fx:id="forgotPasswordCard" alignment="CENTER" spacing="20" maxWidth="380" maxHeight="450" styleClass="auth-card" visible="false">
+            <Label text="Reset Password" styleClass="header-label"/>
+            <Label fx:id="forgotPasswordSubtitle" text="Enter your email to receive a 6-digit reset code." styleClass="sub-label" wrapText="true" textAlignment="CENTER"/>
+            <VBox fx:id="forgotPasswordStep1" spacing="15" alignment="CENTER" maxWidth="Infinity">
+                <TextField fx:id="forgotPasswordEmailInput" promptText="Email Address" styleClass="text-field" maxWidth="Infinity" onAction="#onSendResetCodeSubmit"/>
+                <Button text="Send Reset Code" onAction="#onSendResetCodeSubmit" maxWidth="Infinity" styleClass="action-btn" style="-fx-background-color: #8A2BE2;"   />
+            </VBox>
+            <VBox fx:id="forgotPasswordStep2" spacing="15" alignment="CENTER" maxWidth="Infinity" managed="false" visible="false">
+                <TextField fx:id="forgotPasswordOtpInput" promptText="6-Digit Code" styleClass="text-field" maxWidth="Infinity"/>
+                <PasswordField fx:id="forgotPasswordNewPassInput" promptText="New Password" styleClass="text-field" maxWidth="Infinity" onAction="#onVerifyResetCodeSubmit"/>
+                <Button text="Verify &amp; Update Password" onAction="#onVerifyResetCodeSubmit" maxWidth="Infinity" styleClass="action-btn" style="-fx-background-color: #00E5FF; -fx-text-fill: #110F18;"   />
+            </VBox>
+            <Button text="Back to Login" onAction="#switchToLogin" styleClass="link-btn"   />
+        </VBox>
+    </StackPane>
+
+    <VBox fx:id="splashScreen" styleClass="splash-screen" spacing="25" alignment="CENTER">
+        <StackPane maxWidth="220" maxHeight="220" alignment="CENTER" style="-fx-border-color: rgba(0, 229, 255, 0.5); -fx-border-width: 2px; -fx-border-radius: 30px; -fx-background-color: rgba(30, 27, 46, 0.6); -fx-background-radius: 30px; -fx-padding: 25px;">
+            <ImageView fx:id="splashLogoView" fitWidth="180" preserveRatio="true">
+                <image>
+                    <Image url="@logo.png"/>
+                </image>
+            </ImageView>
+            <effect>
+                <DropShadow color="#00E5FF" radius="30" spread="0.3" />
+            </effect>
+        </StackPane>
+        <VBox alignment="CENTER" spacing="10">
+            <ProgressIndicator styleClass="custom-spinner" prefWidth="40" prefHeight="40"/>
+            <Label fx:id="splashText" text="GATHERING THE SQUAD..." styleClass="splash-text"/>
+        </VBox>
+        <Label text="v1.0.5 PRO" styleClass="splash-version"/>
+    </VBox>
+
+    <StackPane fx:id="toastContainer" mouseTransparent="true" alignment="BOTTOM_CENTER" style="-fx-padding: 0 0 30 0;"/>
+</StackPane>

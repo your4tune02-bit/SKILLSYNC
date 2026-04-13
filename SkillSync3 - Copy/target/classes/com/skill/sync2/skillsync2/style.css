@@ -1,0 +1,788 @@
+/* =======================================================
+   1. CORE THEME VARIABLES — Neon Glassmorphism
+======================================================== */
+.root {
+    -color-bg-base: #0B0914;
+    -color-bg-surface: rgba(30, 27, 46, 0.65);
+    -color-text-main: #F0EEF8;
+    -color-text-sub: #A39DBE;
+    -color-border: rgba(255, 255, 255, 0.09);
+    -color-input-bg: rgba(14, 12, 20, 0.85);
+    -color-shadow: rgba(0, 0, 0, 0.65);
+    -accent: linear-gradient(to right, #FF2A85, #8A2BE2);
+    -fx-font-family: 'Segoe UI', 'Inter', sans-serif;
+    -fx-background-color: linear-gradient(to bottom right, #0F0C1B, #1B112C, #0A0812);
+}
+
+.light-theme {
+    -color-bg-base: #F2F0FA;
+    -color-bg-surface: rgba(255, 255, 255, 0.82);
+    -color-text-main: #110F18;
+    -color-text-sub: #6C6687;
+    -color-border: rgba(0, 0, 0, 0.09);
+    -color-input-bg: rgba(248, 247, 252, 0.95);
+    -color-shadow: rgba(100, 60, 200, 0.12);
+    -fx-background-color: linear-gradient(to bottom right, #EBE8F7, #FAFAFA, #E4DFF2);
+}
+
+/* =======================================================
+   2. TYPOGRAPHY
+======================================================== */
+.header-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: 900;
+    -fx-text-fill: -color-text-main;
+}
+.sub-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -color-text-sub;
+}
+.top-user-lbl {
+    -fx-text-fill: -color-text-main;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+.stat-number {
+    -fx-font-size: 38px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #00E5FF;
+}
+.light-theme .stat-number { -fx-text-fill: #8A2BE2; }
+
+.view-pane { -fx-padding: 20 30 20 30; }
+
+/* =======================================================
+   3. CARDS
+======================================================== */
+.card, .stat-card {
+    -fx-background-color: -color-bg-surface;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1.5px;
+    -fx-padding: 16px;
+    -fx-effect: dropshadow(gaussian, -color-shadow, 14, 0, 0, 5);
+}
+.card:hover, .stat-card:hover {
+    -fx-background-color: rgba(48, 42, 72, 0.85);
+    -fx-effect: dropshadow(gaussian, rgba(138, 43, 226, 0.45), 28, 0, 0, 0);
+    -fx-translate-y: -3px;
+    -fx-border-color: rgba(138, 43, 226, 0.75);
+}
+.light-theme .card:hover, .light-theme .stat-card:hover {
+    -fx-background-color: rgba(240, 236, 255, 0.95);
+    -fx-effect: dropshadow(gaussian, rgba(138, 43, 226, 0.2), 20, 0, 0, 4);
+    -fx-border-color: rgba(138, 43, 226, 0.5);
+}
+
+/* =======================================================
+   4. HERO BANNER
+======================================================== */
+.hero-banner {
+    -fx-background-color: linear-gradient(to right, #4A0E4E, #180B3B);
+    -fx-background-radius: 18px;
+    -fx-padding: 30;
+    -fx-border-color: rgba(255, 42, 133, 0.3);
+    -fx-border-radius: 18px;
+    -fx-effect: dropshadow(gaussian, rgba(255, 42, 133, 0.25), 30, 0, 0, 10);
+}
+.hero-title { -fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: 900; }
+.hero-subtitle { -fx-text-fill: rgba(255,255,255,0.85); -fx-font-size: 15px; }
+
+.light-theme .hero-banner {
+    -fx-background-color: linear-gradient(to right, #6B21A8, #3B0764);
+}
+
+/* =======================================================
+   5. AUTH OVERLAY & CARDS
+======================================================== */
+.auth-overlay {
+    -fx-background-color: radial-gradient(focus-angle 0deg, focus-distance 0%, center 50% 50%, radius 75%, rgba(42, 27, 61, 0.75) 0%, rgba(11, 9, 20, 0.75) 100%);
+    -fx-alignment: center;
+}
+.light-theme .auth-overlay {
+    -fx-background-color: radial-gradient(focus-angle 45deg, focus-distance 0%, center 50% 50%, radius 70%, rgba(138, 43, 226, 0.08) 0%, rgba(235, 232, 244, 0.9) 100%);
+}
+
+.auth-card {
+    -fx-background-color: rgba(18, 14, 28, 0.9);
+    -fx-background-radius: 24px;
+    -fx-padding: 45;
+    -fx-border-color: rgba(138, 43, 226, 0.5);
+    -fx-border-radius: 24px;
+    -fx-border-width: 1.5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 45, 0, 0, 15);
+}
+.auth-card .header-label { -fx-text-fill: #F0EEF8; }
+.auth-card .sub-label    { -fx-text-fill: #A39DBE; }
+
+.auth-card .text-field, .auth-card .password-field {
+    -fx-background-color: rgba(8, 6, 14, 0.7);
+    -fx-text-fill: #F0EEF8;
+    -fx-prompt-text-fill: #6C6687;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 12 15;
+}
+.auth-card .text-field:focused, .auth-card .password-field:focused {
+    -fx-border-color: #8A2BE2;
+    -fx-background-color: rgba(0, 0, 0, 0.85);
+    -fx-effect: dropshadow(gaussian, rgba(138, 43, 226, 0.35), 14, 0, 0, 0);
+}
+
+.link-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #00E5FF;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+.link-btn:hover { -fx-text-fill: #FF2A85; -fx-underline: true; }
+
+/* =======================================================
+   6. NAVIGATION
+======================================================== */
+.top-bar {
+    -fx-background-color: rgba(18, 15, 28, 0.9);
+    -fx-padding: 8 22;
+    -fx-border-color: -color-border;
+    -fx-border-width: 0 0 1.5 0;
+    -fx-effect: dropshadow(gaussian, -color-shadow, 12, 0, 0, 3);
+}
+.light-theme .top-bar {
+    -fx-background-color: rgba(255, 255, 255, 0.92);
+    -fx-border-color: #DDDAEA;
+    -fx-effect: dropshadow(gaussian, rgba(100,60,200,0.08), 10, 0, 0, 2);
+}
+
+.sidebar-container { -fx-background-color: rgba(12, 10, 22, 0.65); }
+.sidebar { -fx-background-color: transparent; -fx-border-color: -color-border; -fx-border-width: 0 1.5 0 0; }
+.light-theme .sidebar-container { -fx-background-color: rgba(224, 218, 244, 0.85); }
+.light-theme .sidebar { -fx-border-color: #DDDAEA; }
+
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: -color-text-sub;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: BASELINE_LEFT;
+    -fx-padding: 13 20;
+    -fx-border-width: 0 0 0 3.5;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+}
+.nav-btn:hover {
+    -fx-background-color: rgba(138, 43, 226, 0.12);
+    -fx-text-fill: -color-text-main;
+    -fx-border-color: rgba(138, 43, 226, 0.4);
+}
+.nav-btn-active {
+    -fx-font-size: 14px; -fx-font-weight: bold; -fx-alignment: BASELINE_LEFT;
+    -fx-padding: 13 20; -fx-border-width: 0 0 0 3.5; -fx-cursor: hand;
+    -fx-background-color: rgba(138, 43, 226, 0.22);
+    -fx-text-fill: #00E5FF;
+    -fx-border-color: #00E5FF;
+}
+.light-theme .nav-btn { -fx-text-fill: #6C6687; }
+.light-theme .nav-btn:hover { -fx-background-color: rgba(138, 43, 226, 0.1); -fx-text-fill: #110F18; }
+.light-theme .nav-btn-active { -fx-background-color: rgba(138, 43, 226, 0.18); -fx-text-fill: #8A2BE2; -fx-border-color: #8A2BE2; }
+.light-theme .hamburger-btn, .light-theme .top-user-lbl { -fx-text-fill: #110F18; }
+
+.hamburger-btn { -fx-background-color: transparent; -fx-text-fill: -color-text-main; -fx-font-size: 18px; -fx-cursor: hand; -fx-padding: 5 12; }
+.hamburger-btn:hover { -fx-background-color: rgba(138, 43, 226, 0.25); -fx-background-radius: 8px; }
+
+/* =======================================================
+   7. ACTION BUTTONS
+======================================================== */
+.action-btn {
+    -fx-background-color: -accent;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 9px;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+.action-btn:hover {
+    -fx-background-color: linear-gradient(to right, #FF2A85, #FF7B00);
+    -fx-effect: dropshadow(gaussian, rgba(255, 42, 133, 0.75), 20, 0, 0, 5);
+    -fx-translate-y: -1px;
+}
+.action-btn:pressed { -fx-translate-y: 0px; -fx-scale-x: 0.97; -fx-scale-y: 0.97; }
+
+/* =======================================================
+   8. INPUTS & TEXT AREAS
+======================================================== */
+.text-field, .custom-text-area {
+    -fx-background-color: -color-input-bg;
+    -fx-text-fill: -color-text-main;
+    -fx-prompt-text-fill: -color-text-sub;
+    -fx-border-color: rgba(255, 255, 255, 0.13);
+    -fx-border-radius: 9px;
+    -fx-background-radius: 9px;
+    -fx-padding: 10 14;
+}
+.text-field:focused, .custom-text-area:focused {
+    -fx-border-color: #00E5FF;
+    -fx-background-color: rgba(0, 0, 0, 0.55);
+    -fx-effect: dropshadow(gaussian, rgba(0,229,255,0.2), 10, 0, 0, 0);
+}
+.custom-text-area .scroll-pane,
+.custom-text-area .scroll-pane .viewport,
+.custom-text-area .scroll-pane .content { -fx-background-color: transparent; }
+
+/* Light theme inputs */
+.light-theme .text-field, .light-theme .custom-text-area {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D9D5EE;
+    -fx-text-fill: #110F18;
+    -fx-prompt-text-fill: #8884A8;
+}
+.light-theme .text-field:focused, .light-theme .custom-text-area:focused {
+    -fx-border-color: #8A2BE2;
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(gaussian, rgba(138,43,226,0.2), 10, 0, 0, 0);
+}
+.light-theme .custom-text-area .scroll-pane,
+.light-theme .custom-text-area .scroll-pane .viewport,
+.light-theme .custom-text-area .scroll-pane .content { -fx-background-color: transparent; }
+
+/* Form validation */
+.input-error {
+    -fx-border-color: #ef4444 !important;
+    -fx-background-color: rgba(239, 68, 68, 0.06) !important;
+    -fx-effect: dropshadow(gaussian, rgba(239, 68, 68, 0.4), 10, 0, 0, 0);
+}
+
+/* =======================================================
+   9. LIST VIEWS & SCROLL BARS
+======================================================== */
+.list-view, .list-cell { -fx-background-color: transparent; -fx-text-fill: -color-text-main; }
+.list-cell:empty { -fx-background-color: transparent; }
+.list-cell:selected { -fx-background-color: transparent; }
+
+.scroll-bar:vertical, .scroll-bar:horizontal { -fx-background-color: transparent; }
+.scroll-bar:vertical .track, .scroll-bar:horizontal .track { -fx-background-color: transparent; -fx-border-color: transparent; }
+.scroll-bar:vertical .thumb, .scroll-bar:horizontal .thumb { -fx-background-color: rgba(138, 43, 226, 0.35); -fx-background-radius: 10px; }
+.scroll-bar:vertical .thumb:hover, .scroll-bar:horizontal .thumb:hover { -fx-background-color: #00E5FF; }
+.scroll-bar .increment-button, .scroll-bar .decrement-button { -fx-background-color: transparent; -fx-padding: 0; }
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow { -fx-background-color: transparent; -fx-shape: ""; }
+
+/* =======================================================
+   10. CHAT
+======================================================== */
+.chat-box {
+    -fx-background-color: rgba(8, 6, 14, 0.65);
+    -fx-border-radius: 14px;
+    -fx-background-radius: 14px;
+    -fx-border-color: -color-border;
+    -fx-border-width: 1px;
+    -fx-padding: 8;
+}
+.light-theme .chat-box {
+    -fx-background-color: rgba(242, 238, 255, 0.7);
+    -fx-border-color: #DDDAEA;
+}
+.light-theme .chat-box .scroll-bar:vertical .thumb { -fx-background-color: rgba(138, 43, 226, 0.2); }
+.light-theme .chat-box .scroll-bar:vertical .thumb:hover { -fx-background-color: #8A2BE2; }
+
+/* =======================================================
+   11. PROGRESS BAR & DIBS BUTTON
+======================================================== */
+.progress-bar { -fx-pref-height: 14px; }
+.progress-bar .track {
+    -fx-background-color: rgba(255, 255, 255, 0.06);
+    -fx-background-radius: 12px;
+}
+.progress-bar .bar {
+    -fx-background-color: linear-gradient(to right, #8A2BE2, #00E5FF);
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 229, 255, 0.5), 8, 0, 0, 0);
+}
+.light-theme .progress-bar .track { -fx-background-color: rgba(0, 0, 0, 0.06); }
+.light-theme .progress-bar .bar { -fx-background-color: linear-gradient(to right, #8A2BE2, #6366f1); -fx-effect: dropshadow(gaussian, rgba(138,43,226,0.3), 6, 0, 0, 0); }
+
+.dibs-btn {
+    -fx-background-color: rgba(0, 229, 255, 0.12);
+    -fx-text-fill: #00E5FF;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-padding: 6 16;
+    -fx-cursor: hand;
+    -fx-border-color: rgba(0, 229, 255, 0.6);
+    -fx-border-radius: 20px;
+    -fx-border-width: 1px;
+}
+.dibs-btn:hover {
+    -fx-background-color: #00E5FF;
+    -fx-text-fill: #110F18;
+    -fx-effect: dropshadow(gaussian, rgba(0, 229, 255, 0.8), 14, 0, 0, 0);
+    -fx-scale-x: 1.04; -fx-scale-y: 1.04;
+}
+
+/* =======================================================
+   12. KANBAN COLUMNS
+======================================================== */
+.kanban-pending, .kanban-progress, .kanban-done {
+    -fx-background-color: -color-bg-surface;
+    -fx-border-radius: 14px;
+    -fx-background-radius: 14px;
+    -fx-border-width: 1.5px;
+    -fx-padding: 16px;
+    -fx-effect: dropshadow(gaussian, -color-shadow, 12, 0, 0, 4);
+}
+.kanban-pending  { -fx-border-color: rgba(108, 102, 135, 0.45); }
+.kanban-progress { -fx-border-color: rgba(255, 42, 133, 0.45); }
+.kanban-done     { -fx-border-color: rgba(0, 229, 255, 0.45); }
+
+.kanban-pending:hover  { -fx-background-color: rgba(108,102,135,0.22); -fx-border-color: rgba(108,102,135,0.85); -fx-translate-y: -3px; -fx-effect: dropshadow(gaussian, rgba(108,102,135,0.4), 22, 0, 0, 0); }
+.kanban-progress:hover { -fx-background-color: rgba(255,42,133,0.15); -fx-border-color: rgba(255,42,133,0.85); -fx-translate-y: -3px; -fx-effect: dropshadow(gaussian, rgba(255,42,133,0.4), 22, 0, 0, 0); }
+.kanban-done:hover     { -fx-background-color: rgba(0,229,255,0.15); -fx-border-color: rgba(0,229,255,0.85); -fx-translate-y: -3px; -fx-effect: dropshadow(gaussian, rgba(0,229,255,0.4), 22, 0, 0, 0); }
+
+/* =======================================================
+   13. SETTINGS & CONTEXT MENUS
+======================================================== */
+.menu-button .context-menu, .context-menu {
+    -fx-background-color: rgba(22, 18, 36, 0.97);
+    -fx-border-color: rgba(255,255,255,0.1);
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 22, 0, 0, 8);
+}
+.context-menu .menu-item { -fx-padding: 9 22; -fx-cursor: hand; }
+.context-menu .menu-item .label { -fx-text-fill: -color-text-main; -fx-font-weight: bold; -fx-font-size: 13px; }
+.context-menu .menu-item:hover { -fx-background-color: rgba(138, 43, 226, 0.2); }
+
+.light-theme .context-menu { -fx-background-color: #FFFFFF; -fx-border-color: #D9D5EE; }
+.light-theme .menu-item .label { -fx-text-fill: #110F18; }
+.light-theme .context-menu .menu-item:hover { -fx-background-color: rgba(138, 43, 226, 0.08); }
+
+.check-menu-item:checked > .left-container > .check {
+    -fx-background-color: #00E5FF;
+    -fx-shape: "M1.5 7.3l2.5 2.5L9.3 3";
+}
+.menu-header-label {
+    -fx-text-fill: -color-text-sub;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 0;
+    -fx-opacity: 0.7;
+}
+.light-theme .menu-header-label { -fx-text-fill: #6C6687; }
+
+/* =======================================================
+   14. SKILL TOGGLE BUTTONS (CHIPS)
+======================================================== */
+.skill-btn, .toggle-button.skill-btn {
+    -fx-background-color: rgba(28, 24, 44, 0.9);
+    -fx-background-insets: 0;
+    -fx-text-fill: #A39DBE;
+    -fx-border-color: rgba(255, 255, 255, 0.14);
+    -fx-border-radius: 22px;
+    -fx-background-radius: 22px;
+    -fx-padding: 7 18;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+.skill-btn:hover, .toggle-button.skill-btn:hover {
+    -fx-background-color: rgba(138, 43, 226, 0.28);
+    -fx-text-fill: #F0EEF8;
+    -fx-border-color: #8A2BE2;
+}
+.skill-btn:selected, .toggle-button.skill-btn:selected {
+    -fx-background-color: linear-gradient(to right, #8A2BE2, #FF2A85);
+    -fx-text-fill: white;
+    -fx-border-color: #FF2A85;
+    -fx-effect: dropshadow(gaussian, rgba(255, 42, 133, 0.6), 14, 0, 0, 0);
+}
+.light-theme .skill-btn, .light-theme .toggle-button.skill-btn {
+    -fx-background-color: #F5F3FB;
+    -fx-text-fill: #6C6687;
+    -fx-border-color: #D9D5EE;
+}
+.light-theme .skill-btn:hover, .light-theme .toggle-button.skill-btn:hover {
+    -fx-background-color: rgba(138, 43, 226, 0.1);
+    -fx-text-fill: #110F18;
+    -fx-border-color: #8A2BE2;
+}
+.light-theme .skill-btn:selected, .light-theme .toggle-button.skill-btn:selected {
+    -fx-background-color: linear-gradient(to right, #8A2BE2, #FF2A85);
+    -fx-text-fill: white;
+    -fx-border-color: #FF2A85;
+    -fx-effect: dropshadow(gaussian, rgba(138,43,226,0.3), 10, 0, 0, 0);
+}
+
+/* =======================================================
+   15. COMBOBOX (WORKSPACE TEAM SELECTOR)
+======================================================== */
+.custom-combo {
+    -fx-background-color: -color-input-bg;
+    -fx-border-color: rgba(255, 255, 255, 0.13);
+    -fx-border-radius: 9px;
+    -fx-background-radius: 9px;
+    -fx-cursor: hand;
+}
+.custom-combo:focused, .custom-combo:showing {
+    -fx-border-color: #00E5FF;
+    -fx-effect: dropshadow(gaussian, rgba(0,229,255,0.15), 10, 0, 0, 0);
+}
+.custom-combo .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -color-text-main;
+    -fx-font-weight: bold;
+    -fx-padding: 8 14;
+}
+.custom-combo .arrow-button { -fx-background-color: transparent; -fx-padding: 0 14 0 0; }
+.custom-combo .arrow { -fx-background-color: -color-text-sub; }
+
+.combo-box-popup .list-view {
+    -fx-background-color: rgba(18, 14, 30, 0.98);
+    -fx-border-color: rgba(255, 255, 255, 0.13);
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,229,255,0.25), 18, 0, 0, 5);
+}
+.combo-box-popup .list-cell { -fx-text-fill: -color-text-main; -fx-padding: 10 14; -fx-font-weight: bold; -fx-cursor: hand; }
+.combo-box-popup .list-cell:hover, .combo-box-popup .list-cell:filled:selected { -fx-background-color: rgba(138,43,226,0.3); -fx-text-fill: #00E5FF; }
+
+.light-theme .custom-combo { -fx-background-color: #FFFFFF; -fx-border-color: #D9D5EE; }
+.light-theme .custom-combo .list-cell { -fx-text-fill: #110F18; }
+.light-theme .custom-combo .arrow { -fx-background-color: #6C6687; }
+.light-theme .combo-box-popup .list-view { -fx-background-color: #FFFFFF; -fx-border-color: #D9D5EE; -fx-effect: dropshadow(gaussian, rgba(138,43,226,0.15), 15, 0, 0, 4); }
+.light-theme .combo-box-popup .list-cell { -fx-text-fill: #110F18; }
+.light-theme .combo-box-popup .list-cell:hover, .light-theme .combo-box-popup .list-cell:filled:selected { -fx-background-color: rgba(138,43,226,0.1); -fx-text-fill: #8A2BE2; }
+
+/* =======================================================
+   16. SPLASH SCREEN
+======================================================== */
+.splash-screen {
+    -fx-background-color: linear-gradient(to bottom right, #1B0A29, #060308);
+    -fx-alignment: center;
+}
+.splash-text {
+    -fx-text-fill: #00E5FF;
+    -fx-letter-spacing: 6px;
+    -fx-font-weight: 900;
+    -fx-font-size: 14px;
+}
+.splash-version { -fx-text-fill: rgba(255,255,255,0.25); -fx-font-size: 12px; -fx-padding: 40 0 0 0; }
+.custom-spinner .indicator { -fx-background-color: #00E5FF; }
+
+/* =======================================================
+   17. DATE PICKER
+======================================================== */
+
+/* ── Inline control ─────────────────────────────────── */
+.date-picker .text-field {
+    -fx-background-color: -color-input-bg;
+    -fx-text-fill: -color-text-main;
+    -fx-border-color: rgba(255,255,255,0.13);
+    -fx-border-radius: 9px 0 0 9px;
+    -fx-background-radius: 9px 0 0 9px;
+}
+.date-picker .arrow-button {
+    -fx-background-color: -color-input-bg;
+    -fx-border-color: rgba(255,255,255,0.13);
+    -fx-border-radius: 0 9px 9px 0;
+    -fx-background-radius: 0 9px 9px 0;
+    -fx-cursor: hand;
+    -fx-padding: 0 10 0 6;
+}
+.date-picker:focused .text-field,
+.date-picker:showing .text-field {
+    -fx-border-color: #00E5FF;
+    -fx-background-color: rgba(0,0,0,0.55);
+    -fx-effect: dropshadow(gaussian, rgba(0,229,255,0.2), 10, 0, 0, 0);
+}
+.date-picker:focused .arrow-button,
+.date-picker:showing .arrow-button {
+    -fx-border-color: #00E5FF;
+    -fx-background-color: rgba(0,0,0,0.55);
+}
+.date-picker .arrow-button .arrow { -fx-background-color: -color-text-sub; }
+.date-picker:showing .arrow-button .arrow,
+.date-picker:hover .arrow-button .arrow  { -fx-background-color: #00E5FF; }
+
+/* ── Popup shell ─────────────────────────────────────── */
+/* MUST be fully opaque — if transparent, app content bleeds through day cells */
+.date-picker-popup {
+    -fx-background-color: #12091E;
+    -fx-background-radius: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.65), 28, 0, 0, 8);
+}
+.date-picker-popup > * {
+    -fx-background-color: #12091E;
+    -fx-border-color: rgba(138,43,226,0.45);
+    -fx-border-radius: 14px;
+    -fx-background-radius: 14px;
+    -fx-padding: 4px;
+}
+
+/* ── Month / Year navigation bar ──────────────────────── */
+.date-picker-popup .month-year-pane {
+    -fx-background-color: rgba(28, 20, 48, 0.98);
+    -fx-background-radius: 12px 12px 0 0;
+    -fx-padding: 6px 4px;
+}
+/* Month/year label text */
+.date-picker-popup .month-year-pane .label {
+    -fx-text-fill: #F0EEF8;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+/* Prev / Next month buttons */
+.date-picker-popup .month-year-pane .button {
+    -fx-background-color: rgba(138,43,226,0.15);
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
+    -fx-cursor: hand;
+    -fx-padding: 7px;
+}
+.date-picker-popup .month-year-pane .button:hover {
+    -fx-background-color: rgba(138,43,226,0.45);
+    -fx-effect: dropshadow(gaussian, rgba(138,43,226,0.5), 10, 0, 0, 0);
+}
+/* Arrow shapes inside nav buttons — must be visible on dark bg */
+.date-picker-popup .month-year-pane .button .left-arrow,
+.date-picker-popup .month-year-pane .button .right-arrow {
+    -fx-background-color: #A39DBE;
+}
+.date-picker-popup .month-year-pane .button:hover .left-arrow,
+.date-picker-popup .month-year-pane .button:hover .right-arrow {
+    -fx-background-color: #00E5FF;
+}
+/* Spinner (year entry) buttons */
+.date-picker-popup .month-year-pane .spinner .increment-arrow-button,
+.date-picker-popup .month-year-pane .spinner .decrement-arrow-button {
+    -fx-background-color: rgba(138,43,226,0.15);
+    -fx-cursor: hand;
+}
+.date-picker-popup .month-year-pane .spinner .increment-arrow-button:hover,
+.date-picker-popup .month-year-pane .spinner .decrement-arrow-button:hover {
+    -fx-background-color: rgba(138,43,226,0.4);
+}
+.date-picker-popup .month-year-pane .spinner .increment-arrow,
+.date-picker-popup .month-year-pane .spinner .decrement-arrow {
+    -fx-background-color: #A39DBE;
+}
+
+/* ── Day names row ──────────────────────────────────── */
+.date-picker-popup .day-name-cell,
+.date-picker-popup .week-number-cell {
+    -fx-text-fill: #6C6687;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+}
+
+/* ── Day cells ──────────────────────────────────────── */
+/*
+ * CRITICAL: JavaFX DateCell has an internal focus-indicator child that
+ * renders as a white oval when background-color is not explicitly cleared.
+ * Every pseudo-state must declare -fx-background-color to prevent bleed-through.
+ */
+.date-picker-popup .day-cell {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+    -fx-text-fill: #F0EEF8;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-padding: 4px;
+}
+.date-picker-popup .day-cell:focused {
+    -fx-background-color: transparent;
+}
+.date-picker-popup .day-cell .text {
+    -fx-fill: #F0EEF8;
+}
+.date-picker-popup .day-cell:hover {
+    -fx-background-color: rgba(138,43,226,0.38);
+    -fx-text-fill: white;
+}
+.date-picker-popup .day-cell:hover .text { -fx-fill: white; }
+
+.date-picker-popup .day-cell:disabled {
+    -fx-background-color: transparent;
+    -fx-cursor: default;
+    -fx-opacity: 0.35;
+}
+.date-picker-popup .day-cell:disabled:hover {
+    -fx-background-color: transparent;
+}
+.date-picker-popup .today {
+    -fx-background-color: transparent;
+    -fx-border-color: #00E5FF;
+    -fx-border-radius: 50%;
+    -fx-border-width: 2px;
+    -fx-text-fill: #00E5FF;
+    -fx-font-weight: bold;
+}
+.date-picker-popup .today .text { -fx-fill: #00E5FF; -fx-font-weight: bold; }
+.date-picker-popup .today:hover { -fx-background-color: rgba(0,229,255,0.15); }
+.date-picker-popup .selected {
+    -fx-background-color: linear-gradient(to bottom right, #8A2BE2, #FF2A85);
+    -fx-background-radius: 50%;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(138,43,226,0.65), 10, 0, 0, 0);
+}
+.date-picker-popup .selected .text { -fx-fill: white; -fx-font-weight: bold; }
+.date-picker-popup .selected:hover { -fx-background-color: linear-gradient(to bottom right, #9B3DFF, #FF4D9A); }
+.date-picker-popup .selected.today { -fx-border-color: #00E5FF; -fx-border-width: 2.5px; -fx-border-radius: 50%; }
+.date-picker-popup .calendar-grid { -fx-background-color: #12091E; -fx-padding: 4px 6px; }
+.date-picker-popup .day-name-cell { -fx-background-color: transparent; }
+
+/* ── LIGHT THEME overrides ──────────────────────────── */
+.light-theme .date-picker .text-field {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #110F18;
+    -fx-border-color: #D9D5EE;
+}
+.light-theme .date-picker .arrow-button {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D9D5EE;
+}
+.light-theme .date-picker:focused .text-field,
+.light-theme .date-picker:showing .text-field  { -fx-border-color: #8A2BE2; -fx-background-color: #FFFFFF; -fx-effect: dropshadow(gaussian, rgba(138,43,226,0.2), 10, 0, 0, 0); }
+.light-theme .date-picker:focused .arrow-button,
+.light-theme .date-picker:showing .arrow-button { -fx-border-color: #8A2BE2; -fx-background-color: #FFFFFF; }
+.light-theme .date-picker .arrow-button .arrow { -fx-background-color: #6C6687; }
+.light-theme .date-picker:showing .arrow-button .arrow { -fx-background-color: #8A2BE2; }
+
+.light-theme .date-picker-popup {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 14px;
+}
+.light-theme .date-picker-popup > * {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D9D5EE;
+    -fx-effect: dropshadow(gaussian, rgba(138,43,226,0.15), 20, 0, 0, 5);
+}
+.light-theme .date-picker-popup .month-year-pane {
+    -fx-background-color: #F5F2FB;
+    -fx-background-radius: 12px 12px 0 0;
+}
+.light-theme .date-picker-popup .month-year-pane .label { -fx-text-fill: #110F18; }
+.light-theme .date-picker-popup .month-year-pane .button {
+    -fx-background-color: rgba(138,43,226,0.08);
+}
+.light-theme .date-picker-popup .month-year-pane .button:hover {
+    -fx-background-color: rgba(138,43,226,0.2);
+    -fx-effect: dropshadow(gaussian, rgba(138,43,226,0.2), 8, 0, 0, 0);
+}
+.light-theme .date-picker-popup .month-year-pane .button .left-arrow,
+.light-theme .date-picker-popup .month-year-pane .button .right-arrow { -fx-background-color: #6C6687; }
+.light-theme .date-picker-popup .month-year-pane .button:hover .left-arrow,
+.light-theme .date-picker-popup .month-year-pane .button:hover .right-arrow { -fx-background-color: #8A2BE2; }
+.light-theme .date-picker-popup .month-year-pane .spinner .increment-arrow,
+.light-theme .date-picker-popup .month-year-pane .spinner .decrement-arrow { -fx-background-color: #6C6687; }
+
+.light-theme .date-picker-popup .day-name-cell { -fx-text-fill: #8884A8; -fx-background-color: transparent; }
+.light-theme .date-picker-popup .day-cell { -fx-background-color: transparent; -fx-text-fill: #110F18; }
+.light-theme .date-picker-popup .day-cell:focused { -fx-background-color: transparent; }
+.light-theme .date-picker-popup .day-cell .text { -fx-fill: #110F18; }
+.light-theme .date-picker-popup .day-cell:hover { -fx-background-color: rgba(138,43,226,0.12); -fx-text-fill: #110F18; }
+.light-theme .date-picker-popup .day-cell:disabled { -fx-background-color: transparent; -fx-opacity: 0.35; }
+.light-theme .date-picker-popup .today { -fx-background-color: transparent; -fx-border-color: #8A2BE2; -fx-text-fill: #8A2BE2; }
+.light-theme .date-picker-popup .today .text { -fx-fill: #8A2BE2; -fx-font-weight: bold; }
+.light-theme .date-picker-popup .selected {
+    -fx-background-color: linear-gradient(to bottom right, #8A2BE2, #6366f1);
+    -fx-effect: dropshadow(gaussian, rgba(138,43,226,0.3), 8, 0, 0, 0);
+}
+.light-theme .date-picker-popup .calendar-grid { -fx-background-color: #FFFFFF; }
+
+/* =======================================================
+   18. ATTACHMENT BUTTON (CHAT FILES)
+======================================================== */
+.attachment-btn {
+    -fx-background-color: rgba(138, 43, 226, 0.2);
+    -fx-border-color: rgba(138, 43, 226, 0.5);
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-text-fill: -color-text-main;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 6 12;
+}
+.attachment-btn:hover {
+    -fx-background-color: rgba(138, 43, 226, 0.4);
+    -fx-border-color: #8A2BE2;
+}
+
+/* =======================================================
+   19. UX POLISH — TRANSITIONS & MICRO-INTERACTIONS
+======================================================== */
+
+/* Smooth card lift with a slightly stronger shadow accent */
+.card, .stat-card {
+    -fx-transition: -fx-translate-y 150ms ease, -fx-effect 150ms ease;
+}
+
+/* Action button: tighter, crisper press feedback */
+.action-btn:hover {
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+/* Nav buttons: accent left-border animates on hover */
+.nav-btn:hover {
+    -fx-border-color: rgba(138, 43, 226, 0.55);
+}
+
+/* Skill chip selected state glow pulse — subtle */
+.skill-btn:selected, .toggle-button.skill-btn:selected {
+    -fx-scale-x: 1.04;
+    -fx-scale-y: 1.04;
+}
+
+/* Progress bar — slightly taller and more prominent */
+.progress-bar {
+    -fx-pref-height: 16px;
+}
+.progress-bar .track {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+/* Workspace deadline DatePicker — same focus ring as project picker */
+#workspaceTaskDeadline:showing .text-field,
+#workspaceTaskDeadline:focused .text-field {
+    -fx-border-color: #FF2A85;
+    -fx-effect: dropshadow(gaussian, rgba(255,42,133,0.25), 10, 0, 0, 0);
+}
+
+/* ComboBox focus ring */
+.custom-combo:focused {
+    -fx-border-color: #00E5FF;
+    -fx-effect: dropshadow(gaussian, rgba(0,229,255,0.2), 12, 0, 0, 0);
+}
+
+/* Scrollbar thumb — slightly thicker for easier grab */
+.scroll-bar:vertical .thumb  { -fx-background-insets: 0 3 0 3; }
+.scroll-bar:horizontal .thumb { -fx-background-insets: 3 0 3 0; }
+
+/* Kanban column label — uppercase + letter-spacing for section clarity */
+.kanban-pending  > .sub-label,
+.kanban-progress > .sub-label,
+.kanban-done     > .sub-label {
+    -fx-letter-spacing: 1.5px;
+    -fx-font-size: 11px;
+}
+
+/* Auth card — smoother focus glow on inputs */
+.auth-card .text-field:focused,
+.auth-card .password-field:focused {
+    -fx-scale-x: 1.005;
+    -fx-scale-y: 1.005;
+}
+
+/* Dibs button — satisfying scale on press */
+.dibs-btn:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-background-color: rgba(0,229,255,0.85);
+    -fx-text-fill: #110F18;
+}
